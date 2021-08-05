@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Alicja- Lambda with Lagrangian with only target pressure with periodic boundary conditions.
+Lambda with Lagrangian with periodic boundary conditions.
 """
 import numpy as np
 import math
@@ -364,21 +364,22 @@ np.random.seed(2)
 random.seed(2)
 #Routine 1:
 #lattice IC with small random deviations
-#Is = lattice(a=spacing,side=side, dim=dim)+(np.random.random((N,dim))-0.5)*spacing*0.05
+Is = lattice(a=spacing,side=side, dim=dim)+(np.random.random((N,dim))-0.5)*spacing*0.05
 
 #Routine 2:
-final_lam=0.79
+final_lam=1.0
 cell_l_scaled=cell_l0*final_lam
 print("V0 after scaling:",cell_l_scaled**dim)
-final_s = final_lam*np.loadtxt("FINALPOSITIONS.csv", delimiter=',')
-Is = fit_in_cell(dim, N, cell_l_scaled, final_s)
+#final_s = final_lam*np.loadtxt("FINALPOSITIONS.csv", delimiter=',')
+#Is = fit_in_cell(dim, N, cell_l_scaled, final_s)
 
 #Routine 1:
-#Ivs = Boltzmann(N, dim, target_T)
+Ivs = Boltzmann(N, dim, target_T)
 #Routine 2
 Ilam = 1.0
-Ivs = np.loadtxt("FINALVELOCITIES.csv", delimiter=',')
+#Ivs = np.loadtxt("FINALVELOCITIES.csv", delimiter=',')
 #"finalvs.csv"
+
 Ivlam = 0
 neighbour_b = neighbour_list(neighbour_range,dim)
 
